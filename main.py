@@ -1,6 +1,6 @@
 from pathlib import Path
 from modules.pdf_tools import sort_pdf_by_last4
-from tkinter import Tk, filedialog
+from tkinter import Tk, filedialog, messagebox
 
 
 
@@ -32,11 +32,12 @@ def main():
 
     count = sort_pdf_by_last4(input_pdf, output_pdf)
 
-    print(f"Файл: {input_pdf.name}")
-    print(f"Страниц: {count}")
-    print(f"Создан: {output_pdf.name}")
-    print()
-    print("=" * 45)
+    messagebox.showinfo(
+        "Готово",
+        f"Сортировка завершена!\n\n"
+        f"Файл:\n{output_pdf.name}\n\n"
+        f"Страниц: {count}"
+    )
 
 
 if __name__ == "__main__":
