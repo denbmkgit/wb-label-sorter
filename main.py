@@ -1,9 +1,8 @@
 from pathlib import Path
-
 from modules.pdf_tools import sort_pdf_by_last4
+from tkinter import Tk, filedialog
 
 
-DATA_FOLDER = Path("data")
 
 
 def main():
@@ -12,17 +11,20 @@ def main():
     print("=" * 45)
     print()
 
-    pdf_files = sorted(DATA_FOLDER.glob("*.pdf"))
+    root = Tk()
+    root.withdraw()
+    root.attributes("-topmost", True)
 
-    if not pdf_files:
-        print("Положите PDF файл в папку data")
+    filename = filedialog.askopenfilename(
+        title="Выберите PDF с этикетками WB",
+        filetypes=[("PDF files", "*.pdf")]
+    )
+
+    if not filename:
+        print("Файл не выбран.")
         return
 
-    if len(pdf_files) > 1:
-        print("В папке data должен быть только один PDF файл")
-        return
-
-    input_pdf = pdf_files[0]
+    input_pdf = Path(filename)
 
     output_pdf = input_pdf.with_name(
         input_pdf.stem + "_sorted.pdf"
