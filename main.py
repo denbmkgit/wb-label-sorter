@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 from modules.pdf_tools import sort_pdf_by_last4
 from tkinter import Tk, filedialog, messagebox
 
@@ -31,6 +32,7 @@ def main():
     )
 
     count = sort_pdf_by_last4(input_pdf, output_pdf)
+    os.startfile(output_pdf.parent)
 
     messagebox.showinfo(
         "Готово",
